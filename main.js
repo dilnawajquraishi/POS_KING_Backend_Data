@@ -88,7 +88,10 @@ db().then(async () => {
 
     const SettingProductCategory = require('./routes/SettingProductCategory.js')
 
-    const     SettingBrand= require('./routes/SettingBrand.js')
+    const  SettingBrand= require('./routes/SettingBrand.js')
+
+    const Permission = require('./routes/Roles&Pwemission.js')
+
 
 
 
@@ -166,6 +169,9 @@ db().then(async () => {
     app.use('/api', SettingProductAttributes)
 
     app.use('/api', SettingBrand)
+
+    app.use('/api',Permission)
+
 
 
 
