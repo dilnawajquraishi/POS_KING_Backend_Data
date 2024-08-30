@@ -31,6 +31,9 @@ let purchageschema=new mongoose.Schema({
      },
      image:{
       type:String
+     },
+     rate:{
+      type:Number,
      }
 
 })

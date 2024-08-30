@@ -1,29 +1,81 @@
 let express = require('express');
 let purchagemodel = require('../models/Purchage');
 const PurchageCategory = require('../models/PurchaseCategory');
-const { FindAllAddress } = require('./EmployeeAddressCategory');
+// const { FindAllAddress } = require('./EmployeeAddressCategory');
+
+// let purchage = async (req, res) => {
+//     console.log('_______________________________________________ invoked')
+//     let { created_at, name, image, supplier, paymentstatus, textarea, refrenceno,  PurchageCategory,rate } = req.body;
+//     console.log(supplier);
+//     try {
+//         let newpurchage = await purchagemodel.create({
+//             created_at: created_at,
+//             name: name,
+//             image:req.file.filename,
+//             supplier: supplier,
+//             paymentstatus: paymentstatus,
+//             textarea:textarea,
+//             refrenceno: refrenceno,
+//             PurchageCategory:  PurchageCategory,
+//             rate:rate
+//             // search:seach
+//         });
+//         return res.status(200).json({ success: true, message: "Purchase created successfully", newpurchage });
+//     } catch (error) {
+//         return res.status(400).json({ success: false, error: error.message });
+//     }
+// }
+
+
+
+// -------------------------------------------
+
+
+
 
 let purchage = async (req, res) => {
-    console.log('_______________________________________________ invoked')
-    let { created_at, name, image, supplier, paymentstatus, textarea, refrenceno,  PurchageCategory } = req.body;
-    console.log(supplier);
+    let { created_at, name, supplier, paymentstatus, refrenceno, PurchageCategory: categoryId, image, rate } = req.body;
+
     try {
-        let newpurchage = await purchagemodel.create({
+        // Fetch the PurchageCategory by ID
+        let category = await PurchageCategory.findById(categoryId);
+
+        if (!category) {
+            return res.status(400).json({ success: false, message: "Category not found" });
+        }
+
+        // Perform calculations
+        let subtotal = category.unitcost * category.quantity;
+        let discountAmount = (subtotal * category.discount) / 100;
+        let taxAmount = (subtotal * category.tax) / 100;
+        let total = subtotal - discountAmount + taxAmount;
+
+        // Create new purchase record
+        let newPurchage = await purchagemodel.create({
             created_at: created_at,
             name: name,
-            image:req.file.filename,
             supplier: supplier,
             paymentstatus: paymentstatus,
-            textarea:textarea,
             refrenceno: refrenceno,
-            PurchageCategory:  PurchageCategory
-            // search:seach
+            PurchageCategory: categoryId,
+            image: req.file.filename,
+            rate: rate,
+            subtotal: subtotal,
+            discountAmount: discountAmount,
+            total: total
         });
-        return res.status(200).json({ success: true, message: "Purchase created successfully", newpurchage });
+
+        return res.status(200).json({ success: true, message: "Purchase created successfully", newPurchage });
     } catch (error) {
         return res.status(400).json({ success: false, error: error.message });
     }
-}
+};
+
+
+
+
+
+
 
 
 let delete_purchage_product = async (req, res) => {

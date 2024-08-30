@@ -2,18 +2,41 @@
 const Category = require('../models/PurchaseCategory'); // Adjust the path as needed
 
 // Create a new category
-const createCategory = async (req, res) => {
+// const createCategory = async (req, res) => {
+//     try {
+//         let { tax, quantity,discunt,unitcost } = req.body;
+//         let newCategory = await Category.create({
+//             tax:tax,
+//             quantity:quantity,
+//             discunt:discunt,
+//             unitcost:unitcost
+//         });
+//         return res.status(200).json({ success: true, message: "Category created successfully", newCategory });
+//     } catch (error) {
+//         return res.status(400).json({ success: false, error: error.message });
+//     }
+// };
+
+
+// ---------------------Updated-------------------------
+
+let createCategory = async (req, res) => {
+    let { tax, quantity, discount, unitcost } = req.body;
     try {
-        let { status, supplier } = req.body;
-        let newCategory = await Category.create({
-            status,
-            supplier
+        let newCategory = await PurchageCategory.create({
+            tax: tax,
+            quantity: quantity,
+            discount: discount,
+            unitcost: unitcost
         });
         return res.status(200).json({ success: true, message: "Category created successfully", newCategory });
     } catch (error) {
         return res.status(400).json({ success: false, error: error.message });
     }
 };
+
+
+
 
 // Delete a category
 const deleteCategory = async (req, res) => {
