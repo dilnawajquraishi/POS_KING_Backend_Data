@@ -16,7 +16,25 @@ router.get('/totalgetNumberProduct', productController.getTotalUsers)
 
 
 
+// ---------------------------------------Add To Cart--------------------------
+
+router.put('/cart/update', productController.addToCart)
+router.post('/cart/add', productController.updateCartItemQuantity)
+router.post('/cart/add', productController.addToCart)
+router.get('/cart/summary', productController.getCartSummary)
+
+
+
+
+
 
 
 
 module.exports = router
+
+
+
+
+
+
+
