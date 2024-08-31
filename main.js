@@ -72,6 +72,7 @@ db().then(async () => {
 
     const SettingTheme = require('./routes/SettingTheme.js')
 
+
     const SettingCurrency = require('./routes/SettingCurrency.js')
 
 
@@ -86,11 +87,18 @@ db().then(async () => {
 
     const SettingSite = require('./routes/SettingSite.js')
 
+
     const SettingProductCategory = require('./routes/SettingProductCategory.js')
+
 
     const  SettingBrand= require('./routes/SettingBrand.js')
 
+
     const Permission = require('./routes/Roles&Pwemission.js')
+
+
+    const  PurchaseCategory= require('./routes/PurchaseCategoryRoute.js')
+
 
 
 
@@ -171,6 +179,12 @@ db().then(async () => {
     app.use('/api', SettingBrand)
 
     app.use('/api',Permission)
+
+    app.use('/api',PurchaseCategory)
+
+
+
+
 
 
 

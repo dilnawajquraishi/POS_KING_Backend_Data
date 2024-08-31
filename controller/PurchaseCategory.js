@@ -1,85 +1,51 @@
-// controllers/categoryController.js
-const Category = require('../models/PurchaseCategory'); // Adjust the path as needed
+let PurchageCategory = require('../models/PurchageCategory');
 
-// Create a new category
-// const createCategory = async (req, res) => {
-//     try {
-//         let { tax, quantity,discunt,unitcost } = req.body;
-//         let newCategory = await Category.create({
-//             tax:tax,
-//             quantity:quantity,
-//             discunt:discunt,
-//             unitcost:unitcost
-//         });
-//         return res.status(200).json({ success: true, message: "Category created successfully", newCategory });
-//     } catch (error) {
-//         return res.status(400).json({ success: false, error: error.message });
-//     }
-// };
-
-
-// ---------------------Updated-------------------------
-
-let createCategory = async (req, res) => {
-    let { tax, quantity, discount, unitcost } = req.body;
+// Create PurchageCategory
+let createPurchageCategory = async (req, res) => {
     try {
         let newCategory = await PurchageCategory.create({
-            tax: tax,
-            quantity: quantity,
-            discount: discount,
-            unitcost: unitcost
+            tax: req.body.tax,
+            quantity: req.body.quantity,
+            discunt: req.body.discount,
+            unitcost: req.body.unitcost
         });
         return res.status(200).json({ success: true, message: "Category created successfully", newCategory });
     } catch (error) {
         return res.status(400).json({ success: false, error: error.message });
     }
-};
+}
 
-
-
-
-// Delete a category
-const deleteCategory = async (req, res) => {
+// Get a PurchageCategory by ID
+let getPurchageCategory = async (req, res) => {
     try {
-        let result = await Category.findByIdAndDelete(req.params._id);
-        if (!result) {
-            return res.status(404).json({ success: false, message: "Category not found" });
-        }
-        return res.status(200).json({ success: true, message: "Category deleted successfully" });
+        let category = await PurchageCategory.findById(req.params.id);
+        if (!category) return res.status(404).json({ success: false, message: "Category not found" });
+        return res.status(200).json({ success: true, category });
     } catch (error) {
         return res.status(400).json({ success: false, error: error.message });
     }
-};
+}
 
-// Get all categories
-const getAllCategories = async (req, res) => {
+// Update a PurchageCategory by ID
+let updatePurchageCategory = async (req, res) => {
     try {
-        let categories = await Category.find();
-        return res.status(200).json({ success: true, message: "Categories retrieved successfully", categories });
-    } catch (error) {
-        return res.status(400).json({ success: false, error: error.message });
-    }
-};
-
-// Update a category
-const updateCategory = async (req, res) => {
-    let { status, supplier } = req.body;
-    let _id = req.params._id;
-    try {
-        let updatedCategory = await Category.findByIdAndUpdate(
-            _id,
-            { $set: { status, supplier } },
-            { new: true }
-        );
+        let updatedCategory = await PurchageCategory.findByIdAndUpdate(req.params.id, req.body, { new: true });
+        if (!updatedCategory) return res.status(404).json({ success: false, message: "Category not found" });
         return res.status(200).json({ success: true, message: "Category updated successfully", updatedCategory });
     } catch (error) {
         return res.status(400).json({ success: false, error: error.message });
     }
-};
+}
 
-module.exports = {
-    createCategory,
-    deleteCategory,
-    getAllCategories,
-    updateCategory
-};
+// Delete a PurchageCategory by ID
+let deletePurchageCategory = async (req, res) => {
+    try {
+        let deletedCategory = await PurchageCategory.findByIdAndDelete(req.params.id);
+        if (!deletedCategory) return res.status(404).json({ success: false, message: "Category not found" });
+        return res.status(200).json({ success: true, message: "Category deleted successfully" });
+    } catch (error) {
+        return res.status(400).json({ success: false, error: error.message });
+    }
+}
+
+module.exports = { createPurchageCategory, getPurchageCategory, updatePurchageCategory, deletePurchageCategory };

@@ -11,10 +11,14 @@ type:mongoose.Schema.Types.ObjectId,ref:"PosOrder"
 
     },
     PaymentType:{
+        type:mongoose.Schema.Types.ObjectId,ref:"purchage",
 
     },
   
-    Date,PaymentStatus,total:{
+    Date,total:{
+        type:mongoose.Schema.Types.ObjectId,ref:"purchage",
+    },
+    Date:{
         type:mongoose.Schema.Types.ObjectId,ref:"purchage",
     },
 
