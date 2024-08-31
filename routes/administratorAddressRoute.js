@@ -7,9 +7,9 @@ const router = express.Router();
 
 router.post('/registerEmployee', AdministratorAddressDetails)
 router.get('/getAllAdministratorAddress', AdminstratorAllAddress)
-router.put('/UpdateAdministratorAddress', updateAdministratorAddress)
-router.delete('/deleteAdministratorAddress', deleteAdministratorAddress)
-router.get('/viewAdministratorAddress', viewAdministratorAddress)
+router.put('/UpdateAdministratorAddress/:_id', updateAdministratorAddress)
+router.delete('/deleteAdministratorAddress/:_id', deleteAdministratorAddress)
+router.get('/viewAdministratorAddress/:_id', viewAdministratorAddress)
 
 
 

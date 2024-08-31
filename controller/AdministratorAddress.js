@@ -62,16 +62,15 @@ let deleteAdministratorAddress=async(req,res)=>{
 
 // ------------------Update-Administrator--------------------------
 
-state
 
-exports.updateAdministratorAddress=async(req,res)=>{
+let updateAdministratorAddress=async(req,res)=>{
     let _id=req.params._id;
 
-let {name,city,street,country,phoneNumber,zipCode  }=req.body;
+let {name,city,street,country,phoneNumber,zipCode,state  }=req.body;
     try {
         let findCustomer=await AddressAdministrator.findByIdAndUpdate({_id:_id})
         if(findCustomer){
-let updateCustomer= await administratorModel.updateOne({_id:_id}, { $set:{name: name,zipCode:zipCode,city:city,street:street,country:country,phoneNumber:phoneNumber}})
+let updateCustomer= await administratorModel.updateOne({_id:_id}, { $set:{name: name,zipCode:zipCode,city:city,street:street,country:country,phoneNumber:phoneNumber,state:state}})
 
             return res.send.json({success:true,message:"Employees updated successfully",updateCustomer})
         }

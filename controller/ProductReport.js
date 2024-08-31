@@ -1,7 +1,7 @@
 const productModel = require('../models/product.js');
 
 // API to get product details with sold and remaining quantity
-exports.getProductInventory = async (req, res) => {
+let getProductInventory = async (req, res) => {
     try {
         const products = await productModel.find().select('productName category soldQuantity initialStock').populate('category', 'alltypecategory');
         
@@ -17,3 +17,6 @@ exports.getProductInventory = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+module.exports={
+    getProductInventory
+}
