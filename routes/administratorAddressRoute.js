@@ -1,5 +1,6 @@
 const express = require('express');
 const { AdministratorAddressDetails, AdminstratorAllAddress, updateAdministratorAddress, deleteAdministratorAddress, viewAdministratorAddress } = require('../controller/AdministratorAddress');
+
 const router = express.Router();
 
 

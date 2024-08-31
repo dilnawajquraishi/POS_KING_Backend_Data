@@ -67,7 +67,7 @@ state
 exports.updateAdministratorAddress=async(req,res)=>{
     let _id=req.params._id;
 
-let {name,city,street,country,phoneNumber  }=req.body;
+let {name,city,street,country,phoneNumber,zipCode  }=req.body;
     try {
         let findCustomer=await AddressAdministrator.findByIdAndUpdate({_id:_id})
         if(findCustomer){

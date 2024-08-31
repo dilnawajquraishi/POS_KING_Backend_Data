@@ -1,11 +1,13 @@
 const express = require('express');
 const router = express.Router();
+
+let uploads=require('../multer.js')
 const administratorRouter = require('../controller/administratorController.js');
 
 
 // ----------------Administrator-------------------
 
-router.post('/addAdministrator',  administratorRouter.newadministrator)
+router.post('/addAdministrator', uploads.single('image') ,administratorRouter.newadministrator)
 router.get('/getAllAdministrator', administratorRouter.getAlladministrator)
 router.delete('/deleteAdministrator/:_id', administratorRouter.deleteAdministrator)
 router.put('/updateAdministrator/:_id',administratorRouter.updateAdministrator)

@@ -7,7 +7,7 @@ let bcryptjs = require('bcryptjs')
 
 
 exports.newadministrator = async (req, res) => {
-    let { name, password, confirmPassword, email, phoneNumber, status } = req.body;
+    let { name, password, confirmPassword, email, phoneNumber, status,image } = req.body;
 
     try {
         // Ensure password and confirmPassword are strings
@@ -37,6 +37,7 @@ exports.newadministrator = async (req, res) => {
             password: hashPassword, // Store the hashed password
             status: status,
             phoneNumber: phoneNumber,
+            image:req.file.filename
         });
 
         return res.status(201).json({ success: true, msg: "User created successfully", details: newUser });

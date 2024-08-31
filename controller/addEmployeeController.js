@@ -4,7 +4,7 @@ const bcryptjs = require('bcryptjs');
 // ---------------------Add-Employee------------------
 
 exports.newemployess = async (req, res) => {
-    let { name, password, confirmPassword, email, status, role, phoneNumber } = req.body;
+    let { name, password, confirmPassword, email, status, role, phoneNumber,image } = req.body;
 
     try {
         let employeesfind = await employeesmodel.findOne({ email: email });
@@ -25,6 +25,7 @@ exports.newemployess = async (req, res) => {
                 phoneNumber: phoneNumber,
                 role: role,
                 status: status,
+                image:req.file.filename,
             });
 
             return res.status(201).json({ success: true, msg: "User created successfully", details });
@@ -65,11 +66,11 @@ exports.deleteEmployees = async(req,res)=>{
 
 exports.updateEmployees=async(req,res)=>{
     let _id=req.params._id;
-    let {name,email,password,confirmPassword,phoneNumber,address,status}=req.body;
+    let {name,email,password,confirmPassword,phoneNumber,address,status,image}=req.body;
     try {
         let findEmployees=await employeesmodel.findByIdAndUpdate({_id:_id})
         if(findEmployees){
-    let updateEmployee = await employeesmodel.updateOne({_id:_id}, { $set:{email: email,password:password,confirmPassword:confirmPassword,address:address,phoneNumber:phoneNumber,name:name,status:status } })
+    let updateEmployee = await employeesmodel.updateOne({_id:_id}, { $set:{email: email,password:password,image:req.file.filename,confirmPassword:confirmPassword,address:address,phoneNumber:phoneNumber,name:name,status:status } })
 
             return res.status(200).json({success:true,message:"Employees updated successfully",findEmployees})
         }
