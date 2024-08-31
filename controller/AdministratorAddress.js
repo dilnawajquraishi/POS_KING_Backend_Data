@@ -20,7 +20,7 @@ let addaddress=await AddressAdministrator.create({
   country:country  
 })        
        
-    
+
      
         return res.status(200).json({success:true,message:"add address successfully",addaddress})
     } catch (error) {
@@ -46,7 +46,54 @@ let AdminstratorAllAddress=async(req,res)=>{
 
 
 
+
+let deleteAdministratorAddress=async(req,res)=>{
+    let _id=req.params._id;
+    try {
+        let findEmployees=await AddressAdministrator.findByIdAndDelete({_id:_id})
+        if(findEmployees){
+            return res.status(200).json({success:true,message:"Employees deleted successfully",findEmployees})
+        }
+    } catch (error) {
+        return res.status(400).json({success:"false",error:error.message})
+    }
+}
+
+
+// ------------------Update-Administrator--------------------------
+
+state
+
+exports.updateAdministratorAddress=async(req,res)=>{
+    let _id=req.params._id;
+
+let {name,city,street,country,phoneNumber  }=req.body;
+    try {
+        let findCustomer=await AddressAdministrator.findByIdAndUpdate({_id:_id})
+        if(findCustomer){
+let updateCustomer= await administratorModel.updateOne({_id:_id}, { $set:{name: name,zipCode:zipCode,city:city,street:street,country:country,phoneNumber:phoneNumber}})
+
+            return res.send.json({success:true,message:"Employees updated successfully",updateCustomer})
+        }
+    } catch (error) {
+        return res.status(400).json({success:"false",error:error.message})
+    }
+}
+
+
+
+// ------------------------------------------------Administrators-View-------------------------------
+
+let viewAdministratorAddress =  async (req, res) => {
+    let id = req.params.id
+    let data = await AddressAdministrator.find({ _id: id })
+    res.json(data)
+}
+
 module.exports={
     AdministratorAddressDetails,
-    AdminstratorAllAddress
+    AdminstratorAllAddress,
+    deleteAdministratorAddress,
+    viewAdministratorAddress,
+    updateAdministratorAddress
 }
