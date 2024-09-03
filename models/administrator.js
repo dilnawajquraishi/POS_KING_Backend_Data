@@ -15,10 +15,6 @@ let administrator = new mongoose.Schema({
     password: String,
     status: String,
 
-    // status: {
-    //     type: Boolean,
-    //     // enum: ['active', 'inactive'],
-    // },
     confirmPassword: String,
     image:{
         type:String,
