@@ -8,11 +8,11 @@ let router=express.Router()
 
 // -----------------Customer------------------
 
-router.post('/addCustomer',newCustomer)
+router.post('/addCustomer',uploads.single('image'),newCustomer)
 router.get('/getAllCustomer',getAllCustomer)
 
-router.delete('/deleteCustomer/:_id',uploads.single('image'),deleteCustomer)
-router.put('/updateCustomer/:_id',updateCustomer)
+router.delete('/deleteCustomer/:_id',deleteCustomer)
+router.put('/updateCustomer/:_id',uploads.single('image'),updateCustomer)
 
-router.get('/filterCustomer',uploads.single('image'),CustomerFilter)
+router.get('/filterCustomer',CustomerFilter)
 router.get('/viewCustomer/:id',viewCustomer)

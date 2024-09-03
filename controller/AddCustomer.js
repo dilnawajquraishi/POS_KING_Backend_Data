@@ -125,9 +125,7 @@ let CustomerFilter=async(req,res)=>{
         query.phoneNumber={$regex:phoneNumber,$option:"i"};
     }
 
-    if(image){
-        query.phoneNumber={$regex:image,$option:"i"};
-    }
+  
     try {
         let findquery=await customerModel.find(query);
         res.send(findquery)
