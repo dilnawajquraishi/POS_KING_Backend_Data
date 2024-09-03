@@ -99,6 +99,10 @@ db().then(async () => {
 
     const  PurchaseCategory= require('./routes/PurchaseCategoryRoute.js')
 
+    const  Customer= require('./routes/Customer.js')
+
+
+
 
 
 
@@ -181,6 +185,8 @@ db().then(async () => {
     app.use('/api',Permission)
 
     app.use('/api',PurchaseCategory)
+
+    app.use('api',Customer)
 
 
 
