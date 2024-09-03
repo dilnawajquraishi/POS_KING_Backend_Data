@@ -78,20 +78,36 @@ let deleteCustomer=async(req,res)=>{
 
 // ------------------Update-Customer--------------------------
 
-let updateCustomer=async(req,res)=>{
-    let _id=req.params._id;
-    let {name,email,password,confirmPassword,phoneNumber,address,status,image}=req.body;
-    try {
-        let findCustomer=await customerModel.findByIdAndUpdate({_id:_id})
-        if(findCustomer){
-    let updateCustomer= await employeesmodel.updateOne({_id:_id}, { $set:{email: email,password:password,confirmPassword:confirmPassword,address:address,phoneNumber:phoneNumber,name:name,status:status,image:req.file.filename}})
 
-            return res.status(200).json({success:true,message:"Employees updated successfully",updateCustomer})
+let updateCustomer = async (req, res) => {
+    let _id = req.params._id;
+    let {name,email,password,confirmPassword,phoneNumber,address,status,image}=req.body;
+
+
+    try {
+        let findCustomer = await customerModel.findById(_id);
+        if (findCustomer) {
+            findCustomer.name = name;
+            findCustomer.email = email;
+            findCustomer.phoneNumber = phoneNumber;
+            findCustomer.confirmPassword = confirmPassword;
+            findCustomer.password = password;
+            findCustomer.address = address;
+            findCustomer.status = status;
+            findCustomer.image = req.file.filename;
+
+            await findCustomer.save();
+
+            return res.json({ success: true, message: "customer updated successfully", findCustomer });
+        } else {
+            return res.status(404).json({ success: false, message: "customer not found" });
         }
     } catch (error) {
-        return res.status(400).json({success:"false",error:error.message})
-    }
-}
+        return res.status(400).json({ success: false, error: error.message });
+    }
+};
+
+
 
 
 // ------------------------------Customer-Filter-------------------------------------------
