@@ -4,8 +4,6 @@ let bcryptjs = require('bcryptjs')
 // ---------------------Add-Employee------------------
 
 
-
-
 exports.newadministrator = async (req, res) => {
     let { name, password, confirmPassword, email, phoneNumber, status,image } = req.body;
 
@@ -80,11 +78,11 @@ exports.deleteAdministrator=async(req,res)=>{
 
 exports.updateAdministrator=async(req,res)=>{
     let _id=req.params._id;
-    let {name,email,password,confirmPassword,phoneNumber,status}=req.body;
+    let {name,email,password,confirmPassword,phoneNumber,status,image}=req.body;
     try {
         let findCustomer=await administratorModel.findByIdAndUpdate({_id:_id})
         if(findCustomer){
-    let updateCustomer= await administratorModel.updateOne({_id:_id}, { $set:{email: email,password:password,confirmPassword:confirmPassword,phoneNumber:phoneNumber,name:name,status:status}})
+    let updateCustomer= await administratorModel.updateOne({_id:_id}, { $set:{email: email,password:password,confirmPassword:confirmPassword,phoneNumber:phoneNumber,name:name,status:status,image:req.file.filename}})
 
             return res.send.json({success:true,message:"Employees updated successfully",updateCustomer})
         }
@@ -92,7 +90,6 @@ exports.updateAdministrator=async(req,res)=>{
         return res.status(400).json({success:"false",error:error.message})
     }
 }
-
 
 
 // ------------------------------------------------Administrators-View-------------------------------
