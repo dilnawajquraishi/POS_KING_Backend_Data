@@ -11,7 +11,7 @@ let createCountry=async(req,res)=>{
         })
         return res.status(200).json({success:true,message:"Created Country Successfully"})
     } catch (error) {
-        return res.status(400).json({success:trfalseue,error:error.message})
+        return res.status(400).json({success:false,error:error.message})
         
     }
 }
@@ -41,6 +41,33 @@ let deleteCountry=async(req,res)=>{
 
 
 
+// ------------------------------------Update----------------------------------
+let updateCountry = async (req, res) => {
+    let _id = req.params._id;
+    let {  countryName, code, status ,userId} = req.body;
+
+    try {
+        let findCountry = await settingCountry.findById(_id);
+        if (findCountry) {
+            findCountry.countryName = countryName;
+            findCountry.code = code;
+            findCountry.status = status;
+            findCountry.userId = userId;
+
+
+            await findCountry.save();
+
+            return res.json({ success: true, message: "country updated successfully", findState });
+        } else {
+            return res.status(404).json({ success: false, message: "country not found" });
+        }
+    } catch (error) {country
+        return res.status(400).json({ success: false, error: error.message });
+    }
+};
+
+
+
 let GetAllCountry=async(req,res)=>{
     
     try {
@@ -56,5 +83,6 @@ let GetAllCountry=async(req,res)=>{
 module.exports={
     createCountry,
     deleteCountry,
-    GetAllCountry
+    GetAllCountry,
+    updateCountry
 }

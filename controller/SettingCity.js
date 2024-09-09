@@ -16,6 +16,33 @@ let createCity=async(req,res)=>{
     }
 }
 
+
+
+// ------------------------------------Update----------------------------------
+let updateCity= async (req, res) => {
+    let _id = req.params._id;
+    let {cityName,stateName,status,userId}=req.body;
+
+    try {
+        let findCity = await settingCity.findById(_id);
+        if (findCity) {
+            findCity.cityName = cityName;
+            findCity.stateName = stateName;
+            findCity.status = status;
+            findCity.userId = userId;
+
+
+            await findCity.save();
+
+            return res.json({ success: true, message: "city updated successfully", findState });
+        } else {
+            return res.status(404).json({ success: false, message: "city not found" });
+        }
+    } catch (error) {city
+        return res.status(400).json({ success: false, error: error.message });
+    }
+};
+
 // ------------------------------------DeleteCountry------------------------
 
 let deleteCity=async(req,res)=>{
@@ -53,10 +80,6 @@ let GetAllCity=async(req,res)=>{
 }
 
 
-
-
-
-
 // --------------------Filter--------------------
 
 
@@ -88,23 +111,11 @@ let filterCity = async (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 module.exports={
     createCity,
     deleteCity,
     GetAllCity,
-    filterCity
+    filterCity,
+    updateCity
 
 }
