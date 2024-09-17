@@ -3,13 +3,13 @@ let settingCity=require('../models/SettingCity')
 let createCity=async(req,res)=>{
     let {cityName,stateName,status,userId}=req.body;
     try {
-        let AddCountry=await settingCity.create({
+        let AddCity=await settingCity.create({
             cityName:cityName,
             stateName:stateName,
             status:status,
             userId:userId
         })
-        return res.status(200).json({success:true,message:"Created Country Successfully"})
+        return res.status(200).json({success:true,message:"Created city Successfully"})
     } catch (error) {
         return res.status(400).json({success:trfalseue,error:error.message})
         

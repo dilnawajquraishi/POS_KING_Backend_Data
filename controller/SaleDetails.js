@@ -59,14 +59,6 @@ let saledetails= async (req, res) => {
 };
 
 
-
-
-
-
-
-
-
-
 // -------------------------------------------Daily Average Sale And Total Sale----------------------------
 
 
@@ -107,11 +99,6 @@ let dailysale= async (req, res) => {
         res.status(500).json({ success: false, error: error.message });
     }
 };
-
-
-
-
-
 
 
 module.exports ={

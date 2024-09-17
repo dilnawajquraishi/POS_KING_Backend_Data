@@ -1,5 +1,5 @@
 let mongoose=require('mongoose')
-let country=new mongoose.Schema({
+let city=new mongoose.Schema({
     cityName:{
         type:String,
     },
@@ -15,4 +15,4 @@ let country=new mongoose.Schema({
         type:String,
       }
 })
-module.exports=mongoose.model("SettingCity",city)
+module.exports=mongoose.model("cityCollection",city)
