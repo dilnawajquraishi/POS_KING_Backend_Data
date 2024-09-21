@@ -1,4 +1,4 @@
-let settingProductCategory=require("../models/SettingUnit")
+let settingProductCategory=require("../models/SettingProductCategory")
 let CreateCategory=async(req,res)=>{
     let {name,image,status,description}=req.body;
 
@@ -10,7 +10,6 @@ let CreateCategory=async(req,res)=>{
             image:req.file.filename,
             description:description
 
-
         })
         return res.status(200).json({success:true,message:"category created successfully",category})
     } catch (error) {
@@ -19,15 +18,13 @@ let CreateCategory=async(req,res)=>{
     }
 }
 
-
-
 // -----------------------------------------------------------------Delete_Supplier-----------------------------------
 
 let deleteCategory = async (req, res) => {
     try {
         let result = await settingProductCategory.findByIdAndDelete(req.params._id);
         if (!result) {
-            return res.status(404).json({ success: false, message: "category deleted successfully" });
+            return res.status(404).json({ success: false, message: "category not  deleted successfully" });
         }
         return res.status(200).json({ success: true, message: "category deleted successfully" });
     } catch (error) {
@@ -77,3 +74,4 @@ module.exports={
     getAllCategoy,
     updateCategory,
 }
+

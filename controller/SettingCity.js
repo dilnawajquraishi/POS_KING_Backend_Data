@@ -17,7 +17,6 @@ let createCity=async(req,res)=>{
 }
 
 
-
 // ------------------------------------Update----------------------------------
 let updateCity= async (req, res) => {
     let _id = req.params._id;
@@ -64,8 +63,6 @@ let deleteCity=async(req,res)=>{
         
     }
 }
-
-
 
 
 let GetAllCity=async(req,res)=>{
