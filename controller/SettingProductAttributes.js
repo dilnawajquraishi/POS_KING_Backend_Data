@@ -67,10 +67,19 @@ let updateattributes= async (req, res) => {
 };
 
 
+// ----------------------------Setting Product Attributes View---------------------------
+
+let viewSettingProductAttributs =  async (req, res) => {
+    let id = req.params.id
+    let data = await settingProductCategory.find({ _id: id })
+    res.json(data)
+}
+
 
 module.exports={
     Createattributes,
     deleteattributes,
     getAllattributes,
     updateattributes,
+    viewSettingProductAttributs
 }
