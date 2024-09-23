@@ -4,16 +4,16 @@ const { Createattributes, deleteattributes, updateattributes, getAllattributes }
 
 const router = express.Router();
 
-router.post('/createcity', Createattributes)
+router.post('/ceateProductAttributes', Createattributes)
 
-router.delete('/deletecity/:_id', deleteattributes);
-
-
-router.put('/updateSite/:_id', updateattributes);
+router.delete('/deleteProductAttributes/:_id', deleteattributes);
 
 
+router.put('/updateProductAttributes/:_id', updateattributes);
 
-router.get('/gretallcity', getAllattributes);
+
+
+router.get('/gretallProductAttributes', getAllattributes);
 
 
 
