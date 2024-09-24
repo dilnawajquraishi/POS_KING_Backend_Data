@@ -78,7 +78,7 @@ let updateattributesColor = async (req, res) => {
 
     try {
         // Use findByIdAndUpdate directly to find and update in one step
-        let updatedColor = await settingProductCategory.findByIdAndUpdate(
+        let updatedColor = await attributes.findByIdAndUpdate(
             _id,
             { $set: { color } },
             { new: true, runValidators: true } // Return the updated document and run validators
@@ -106,7 +106,7 @@ let updateattributesColor = async (req, res) => {
 
 let viewSettingProductAttributsColor =  async (req, res) => {
     let id = req.params.id
-    let data = await settingProductCategory.find({ _id: id })
+    let data = await attributes.find({ _id: id })
     res.json(data)
 }
 

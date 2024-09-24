@@ -78,7 +78,7 @@ let updateattributes = async (req, res) => {
 
     try {
         // Use findByIdAndUpdate directly to find and update in one step
-        let updatedEmployee = await settingProductCategory.findByIdAndUpdate(
+        let updatedEmployee = await attributes.findByIdAndUpdate(
             _id,
             { $set: { name } },
             { new: true, runValidators: true } // Return the updated document and run validators
@@ -112,7 +112,7 @@ let updateattributes = async (req, res) => {
 
 let viewSettingProductAttributs =  async (req, res) => {
     let id = req.params.id
-    let data = await settingProductCategory.find({ _id: id })
+    let data = await attributes.find({ _id: id })
     res.json(data)
 }
 

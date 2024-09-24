@@ -13,7 +13,7 @@ router.put('/updateProductAttributes/:_id', updateattributesColor);
 
 router.get('/gretallProductAttributes', getAllattributesColor);
 
-router.get('/viewProductAttributes', viewSettingProductAttributsColor);
+router.get('/viewProductAttributes/:_id',viewSettingProductAttributsColor);
 
 
 
