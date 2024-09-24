@@ -15,6 +15,7 @@ app.use(express.urlencoded({extended: true, limit: "100kb"}))
 app.use(express.static('uploads'))
 app.use(cors())
 
+
 db().then(async () => {
 
    
@@ -101,17 +102,7 @@ db().then(async () => {
 
     const  Customer= require('./routes/Customer.js')
 
-
-
-
-
-
-
-
-
-
-
-
+    const SettingProductAttributesColor=require("./routes/SettingProductAttributesColor.js")
 
 
 
@@ -187,6 +178,8 @@ db().then(async () => {
     app.use('/api',PurchaseCategory)
 
     app.use('api',Customer)
+
+    app.use('/api',SettingProductAttributesColor)
 
 
 

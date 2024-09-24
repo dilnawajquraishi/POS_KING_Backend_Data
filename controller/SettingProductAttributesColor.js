@@ -1,15 +1,15 @@
-let attributes=require("../models/SettingProductAttributes")
-let Createattributes=async(req,res)=>{
-    let {name}=req.body;
+let attributes=require("../models/SettingProductAttributesColor")
+let CreateattributesColor=async(req,res)=>{
+    let {color}=req.body;
 
     try {
-        let category=await attributes.create({
-            name:name,
+        let ColorAdd=await attributes.create({
+            color:color,
            
 
 
         })
-        return res.status(200).json({success:true,message:"category created successfully",category})
+        return res.status(200).json({success:true,message:"category created successfully",ColorAdd})
     } catch (error) {
         return res.status(400).json({success:false,error:error.message})
         
@@ -20,7 +20,7 @@ let Createattributes=async(req,res)=>{
 
 // -----------------------------------------------------------------Delete_Supplier-----------------------------------
 
-let deleteattributes = async (req, res) => {
+let deleteattributesColor = async (req, res) => {
     try {
         let result = await attributes.findByIdAndDelete(req.params._id);
         if (!result) {
@@ -36,7 +36,7 @@ let deleteattributes = async (req, res) => {
 // -----------------------------------------------------------------Get_ALL_Supplier-----------------------------------
 
 
-let getAllattributes=async(req,res)=>{
+let getAllattributesColor=async(req,res)=>{
     try {
         let findgetdata=await  attributes.find({})
         return res.status(200).json({success:true,message:"get all data",findgetdata})
@@ -72,24 +72,24 @@ let getAllattributes=async(req,res)=>{
 // }
 
 
-let updateattributes = async (req, res) => {
+let updateattributesColor = async (req, res) => {
     let _id = req.params._id;
-    let { name } = req.body;
+    let { color } = req.body;
 
     try {
         // Use findByIdAndUpdate directly to find and update in one step
-        let updatedEmployee = await settingProductCategory.findByIdAndUpdate(
+        let updatedColor = await settingProductCategory.findByIdAndUpdate(
             _id,
-            { $set: { name } },
+            { $set: { color } },
             { new: true, runValidators: true } // Return the updated document and run validators
         );
 
         // Check if the employee was found and updated
-        if (updatedEmployee) {
+        if (updatedColor) {
             return res.status(200).json({
                 success: true,
                 message: "Employee updated successfully",
-                data: updatedEmployee
+                data: updatedColor
             });
         } else {
             return res.status(404).json({ success: false, message: "Employee not found" });
@@ -102,15 +102,9 @@ let updateattributes = async (req, res) => {
 
 
 
-
-
-
-
-
-
 // ----------------------------Setting Product Attributes View---------------------------
 
-let viewSettingProductAttributs =  async (req, res) => {
+let viewSettingProductAttributsColor =  async (req, res) => {
     let id = req.params.id
     let data = await settingProductCategory.find({ _id: id })
     res.json(data)
@@ -118,9 +112,9 @@ let viewSettingProductAttributs =  async (req, res) => {
 
 
 module.exports={
-    Createattributes,
-    deleteattributes,
-    getAllattributes,
-    updateattributes,
-    viewSettingProductAttributs
+    CreateattributesColor,
+    deleteattributesColor,
+    getAllattributesColor,
+    updateattributesColor,
+    viewSettingProductAttributsColor
 }
