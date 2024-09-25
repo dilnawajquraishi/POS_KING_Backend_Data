@@ -74,25 +74,20 @@ let getAllattributesColor=async(req,res)=>{
 
 let updateattributesColor = async (req, res) => {
     let _id = req.params._id;
-    let { color } = req.body;
+    let { color} = req.body;
 
     try {
-        // Use findByIdAndUpdate directly to find and update in one step
+        // Update the address and return the updated document
         let updatedColor = await attributes.findByIdAndUpdate(
-            _id,
+            _id, 
             { $set: { color } },
-            { new: true, runValidators: true } // Return the updated document and run validators
+            { new: true } // This option returns the updated document
         );
 
-        // Check if the employee was found and updated
         if (updatedColor) {
-            return res.status(200).json({
-                success: true,
-                message: "Employee updated successfully",
-                data: updatedColor
-            });
+            return res.json({ success: true, message: "color updated successfully", updatedColor });
         } else {
-            return res.status(404).json({ success: false, message: "Employee not found" });
+            return res.status(404).json({ success: false, message: "Color not found" });
         }
     } catch (error) {
         return res.status(400).json({ success: false, error: error.message });
