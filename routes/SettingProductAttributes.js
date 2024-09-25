@@ -4,15 +4,15 @@ const { Createattributes, deleteattributes, updateattributes, getAllattributes, 
 
 const router = express.Router();
 
-router.post('/ceateProductAttributes', Createattributes)
+router.post('/ceateProductAttributesSize', Createattributes)
 
-router.delete('/deleteProductAttributes/:_id', deleteattributes);
+router.delete('/deleteProductAttributesSize/:_id', deleteattributes);
 
-router.put('/updateProductAttributes/:_id', updateattributes);
+router.put('/updateProductAttributesSize/:_id', updateattributes);
 
-router.get('/gretallProductAttributes', getAllattributes);
+router.get('/gretallProductAttributesSize', getAllattributes);
 
-router.get('/viewProductAttributes', viewSettingProductAttributs);
+router.get('/viewProductAttributesSize/:id', viewSettingProductAttributs);
 
 
 

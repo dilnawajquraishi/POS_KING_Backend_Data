@@ -8,4 +8,4 @@ let ProductAttributesColor=new mongoose.Schema({
   
 })
 
-module.exports=mongoose.model("SettingProductAttributesColor",ProductAttributes)
+module.exports=mongoose.model("SettingProductAttributesColor",ProductAttributesColor)

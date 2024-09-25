@@ -5,15 +5,15 @@ const { CreateattributesColor, deleteattributesColor, updateattributesColor, get
 
 const router = express.Router();
 
-router.post('/ceateProductAttributes', CreateattributesColor)
+router.post('/ceateProductAttributesColor', CreateattributesColor)
 
-router.delete('/deleteProductAttributes/:_id', deleteattributesColor);
+router.delete('/deleteProductAttributesColor/:_id', deleteattributesColor);
 
-router.put('/updateProductAttributes/:_id', updateattributesColor);
+router.put('/updateProductAttributesColor/:_id', updateattributesColor);
 
-router.get('/gretallProductAttributes', getAllattributesColor);
+router.get('/gretallProductAttributesColor', getAllattributesColor);
 
-router.get('/viewProductAttributes/:_id',viewSettingProductAttributsColor);
+router.get('/viewProductAttributesColor/:id',viewSettingProductAttributsColor);
 
 
 module.exports = router;
