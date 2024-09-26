@@ -105,6 +105,7 @@ db().then(async () => {
     const SettingProductAttributesColor=require("./routes/SettingProductAttributesColor.js")
 
 
+    const SettingProductAttributesSize=require("./routes/SettingProductAttributesSize.js")
 
 
 
@@ -180,6 +181,8 @@ db().then(async () => {
     app.use('api',Customer)
 
     app.use('/api',SettingProductAttributesColor)
+
+    app.use('/api',SettingProductAttributesSize)
 
 
 

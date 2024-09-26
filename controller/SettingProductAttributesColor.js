@@ -99,11 +99,25 @@ let updateattributesColor = async (req, res) => {
 
 // ----------------------------Setting Product Attributes View---------------------------
 
-let viewSettingProductAttributsColor =  async (req, res) => {
-    let id = req.params.id
-    let data = await attributes.find({ _id: id })
-    res.json(data)
-}
+
+
+
+
+let viewSettingProductAttributsColor = async (req, res) => {
+    try {
+        let id = req.params._id;  // Use _id as defined in the route
+        let data = await attributes.findById(id);  // Use findById for single document
+
+        if (!data) {
+            return res.status(404).json({ success: false, message: "Color not found" });
+        }
+
+        res.status(200).json({ success: true, data });
+    } catch (error) {
+        res.status(500).json({ success: false, error: error.message });
+    }
+};
+
 
 
 module.exports={
