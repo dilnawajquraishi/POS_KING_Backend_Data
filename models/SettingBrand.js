@@ -6,9 +6,11 @@ const Settingbrand = new mongoose.Schema({
 
   },
   status: {
-    type: Number,
-    enum: ['active', "inactive"],
+    type: String,
 
+  },
+  image:{
+    type:String,
   },
   description: {
     type: String,

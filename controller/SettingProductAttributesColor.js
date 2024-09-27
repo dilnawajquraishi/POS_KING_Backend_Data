@@ -100,9 +100,6 @@ let updateattributesColor = async (req, res) => {
 // ----------------------------Setting Product Attributes View---------------------------
 
 
-
-
-
 let viewSettingProductAttributsColor = async (req, res) => {
     try {
         let id = req.params._id;  // Use _id as defined in the route
